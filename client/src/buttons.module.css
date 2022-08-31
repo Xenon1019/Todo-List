@@ -1,0 +1,15 @@
+.buttonContainer{
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.button{
+    padding: 0.8rem;
+    background-color: #D00;
+    color: white;
+    border-radius: 3px;
+    border-color: #aaa;
+}

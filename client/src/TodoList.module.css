@@ -1,0 +1,12 @@
+.list{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem;
+    gap: 1rem;
+}
+.list li{
+    width: 75%;
+}
