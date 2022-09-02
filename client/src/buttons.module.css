@@ -11,5 +11,7 @@
     background-color: #D00;
     color: white;
     border-radius: 3px;
-    border-color: #aaa;
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 2px;
 }

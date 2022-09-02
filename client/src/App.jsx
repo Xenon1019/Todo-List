@@ -24,10 +24,30 @@ export default function App(){
         },
     ];
     var [list, setList] = useState(defaultList);
+    var [editing, setEdit] = useState(null);
+
 
     return <>
         <Navbar />
-        <TodoList todoList={list} setTodoList={setList} />
-        <Buttons resetHandler={() => setList([])}/>
+        <TodoList todoList={list} editable={editing}
+         doneHandler={() => setEdit(null)} 
+            editTask={(taskIndex, task) => {
+                const newList = list.slice();
+                newList[taskIndex].task = task;
+                setList(newList);
+            }}
+        />
+        <Buttons resetHandler={() => setList([])} edit={{setEdit}} 
+            addTask={() => {
+                const newList = list.slice();
+                newList.push({
+                    task: 'Enter new task',
+                    description: 'Todo Simple Task',
+                    createdOn: new Date(Date.now()).toLocaleDateString()
+                });
+                setList(newList);
+                setEdit(newList.length - 1);
+            }}
+        />
     </>;
 }
