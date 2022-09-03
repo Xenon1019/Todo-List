@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './buttons.module.css';
+
+import styles from '../css/buttons.module.css';
 
 export default function Buttons(props){
     return <div className={styles.buttonContainer}>

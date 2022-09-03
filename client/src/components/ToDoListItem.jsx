@@ -1,15 +1,16 @@
 import React from 'react';
-import styles from './ToDoListItem.module.css';
-import buttonStyles from './buttons.module.css';
+
+import styles from '../css/ToDoListItem.module.css';
+import buttonStyles from '../css/buttons.module.css';
 
 
 export default function TodoItem(props) {
     let content;
     if (props.editable) {
         content = <>
-            <input type='text' 
+            <input type='text'
                 value={props.item.task} autoFocus
-                onInput={(e) => {props.onEdit(e.target.value)}}
+                onInput={(e) => { props.onEdit(e.target.value) }}
                 onKeyDown={(e) => {
                     if (e.key === 'Enter')
                         props.onEditDone();
@@ -25,9 +26,12 @@ export default function TodoItem(props) {
     } else {
         content = <>
             <span>{props.item.task}</span>
-            <span>
-                <input type="checkbox" name="done" id={props.listId} onClick={props.done} />
-            </span>
+            <input type="checkbox" id={props.listId} onClick={props.done}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter')
+                        props.done(e);
+                }}
+            />
         </>;
     }
 

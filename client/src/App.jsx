@@ -1,53 +1,15 @@
 import React from 'react';
-import { useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import Navbar from "./NavBar"
-import TodoList from "./ToDoList";
-import Buttons from './Buttons';
+import AppList from './components/AppList';
+import Login from './components/Login';
 
 export default function App(){
-    var defaultList = [
-        {
-            task: 'Task 1',
-            description: 'Todo Sample Task',
-            createdOn: '29/08/2022',
-        },
-        {
-            task: 'Task 2',
-            description: 'Todo Sample Task',
-            createdOn: '29/08/2022',
-        },
-        {
-            task: 'Task 3',
-            description: 'Todo Sample Task',
-            createdOn: '29/08/2022',
-        },
-    ];
-    var [list, setList] = useState(defaultList);
-    var [editing, setEdit] = useState(null);
-
-
-    return <>
-        <Navbar />
-        <TodoList todoList={list} editable={editing}
-         doneHandler={() => setEdit(null)} 
-            editTask={(taskIndex, task) => {
-                const newList = list.slice();
-                newList[taskIndex].task = task;
-                setList(newList);
-            }}
-        />
-        <Buttons resetHandler={() => setList([])} edit={{setEdit}} 
-            addTask={() => {
-                const newList = list.slice();
-                newList.push({
-                    task: 'Enter new task',
-                    description: 'Todo Simple Task',
-                    createdOn: new Date(Date.now()).toLocaleDateString()
-                });
-                setList(newList);
-                setEdit(newList.length - 1);
-            }}
-        />
-    </>;
+    return <BrowserRouter>
+        <Routes>
+            <Route path='/' element={<Navigate to='/login' replace={true} />} />
+            <Route path='login' element={<Login />}/>
+            <Route path='app' element={<AppList />}/>
+        </Routes>
+    </BrowserRouter>;
 }

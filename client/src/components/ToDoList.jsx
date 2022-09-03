@@ -1,11 +1,10 @@
 import React from "react";
 
 import TodoItem from "./ToDoListItem";
-import styles from './TodoList.module.css';
+import styles from '../css/TodoList.module.css';
 
 export default function TodoList(props){
     let list = props.todoList;
-    let setList = props.setTodoList;
     return <ul className={styles.list}>
             {
                 list.map((listItem, i) => 
@@ -13,7 +12,7 @@ export default function TodoList(props){
                     <TodoItem item={listItem}
                         done={(e) => {
                             e.preventDefault();
-                            setList(list.filter((task, ind) => i !== ind));
+                            props.setTodoList(list.filter((task, ind) => i !== ind));
                         }}
                         onEdit={(newTask) => props.editTask(i, newTask)}
                         onEditDone={props.doneHandler}
